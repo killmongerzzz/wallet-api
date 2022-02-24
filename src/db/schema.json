@@ -1,0 +1,62 @@
+[
+  {
+    "TableName": "wallet_account_details",
+    "Schema": {
+      "id": {
+        "type": "String",
+        "hashKey": true
+      },
+      "name": {
+        "type": "String",
+        "required": true
+      },
+      "credit": {
+        "type": "Number",
+        "required": true
+      },
+      "createdOn": {
+        "type": "Number",
+        "required": true
+      }
+    },
+    "SchemaOptions": {},
+    "Options": {}
+  },
+  {
+    "TableName": "wallet_trans_history",
+    "Schema": {
+      "id": {
+        "type": "String",
+        "hashKey": true
+      },
+      "credit": {
+        "type": "Number",
+        "required": true
+      },
+      "type": {
+        "type": "String",
+        "required": true
+      },
+      "description": {
+        "type": "String"
+      },
+      "walletId": {
+        "type": "String",
+        "required": true,
+        "index": {
+          "global": true,
+          "name": "walletIndex",
+          "project": true
+        }
+      },
+      "createdOn": {
+        "type": "Number"
+      },
+      "balance": {
+        "type": "Number"
+      }
+    },
+    "SchemaOptions": {},
+    "Options": {}
+  }
+]
