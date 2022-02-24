@@ -1,0 +1,47 @@
+{
+  "name": "lsq-universal-sms-admin-api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "sls offline --stage stage",
+    "test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json",
+    "coverage": "nyc -e .ts -x \"tests/*.test.ts\" npm run test"
+  },
+  "dependencies": {
+    "dynamoose": "2.8.5",
+    "lodash": "^4.17.21",
+    "uuid": "8.3.2"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.10.2",
+    "jasmine": "^3.5.0",
+    "nyc": "^15.0.0",
+    "serverless": "^1.54.0",
+    "serverless-offline": "^8.3.1",
+    "serverless-plugin-typescript": "^1.1.7",
+    "serverless-stack-output": "^0.2.3",
+    "ts-node": "^8.8.2",
+    "typescript": "^3.9.3"
+  },
+  "nyc": {
+    "cache": false,
+    "check-coverage": false,
+    "coverage": ".nyc_output/coverage",
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [],
+    "sourceMap": false,
+    "reporter": [
+      "html",
+      "text",
+      "text-summary"
+    ],
+    "all": false,
+    "instrument": true
+  }
+}

@@ -1,0 +1,41 @@
+service: walletService
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+provider:
+  name: aws
+  runtime: nodejs14.x
+  endpointType: regional
+  stage: dev
+  region: us-east-1
+  logRetentionInDays: 1
+  memorySize: 256
+  timeout: 29
+  iam:
+    role: arn:aws:iam::442292491712:user/admin
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:UpdateTable
+      Resource: "arn:aws:dynamodb:us-east-1:*:*"
+functions:
+  wallet:
+    handler: src/handler.walletConnectorEvent
+    events:
+      - http:
+          path: walletService/{eventType}
+          method: any
+          cors:
+            origins:
+              - https://main.d2dj6nkaccnutc.amplifyapp.com
+              - http://localhost:3000
+            headers:
+              - x-app-token
+              - content-type
